@@ -13,10 +13,13 @@ const {Title} = Astro.props;
   </details>
 <style>
     details {
-        border-bottom: 1px solid var(--color-border-primary);
-        padding-block: var(--space-m);
+        background-color: var(--color-bg-secondary);
+        padding: var(--space-m);
         width: 100%;
         transition: 100ms opacity ease-out;
+        &:not(:last-child) {
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
         &[open] {
             opacity: 1;
         

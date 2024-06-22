@@ -15,7 +15,7 @@ const { title } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content="Proste, wegańskie przepisy na słodkie wypieki oraz przysmaki pt. “po wegańsku. na słodko” autorki Nikola Chmiel. Książka jest kierowana do wszystkich. Wegan czy nie wegan. To nie jest istotne. Chcę, abyście z moich przepisów czerpali inspirację do lepszego traktowania swojego ciała, a może nawet spędzili trochę czasu i poczytali o weganizmie.">
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
@@ -54,6 +54,10 @@ const { title } = Astro.props;
 		--font-weight-main-heading: 400;
 		--font-weight-heading: 400;
 	}
+
+	* {
+		box-sizing: border-box;
+	}
 	html {
 		font-family: var(--serif);
 		background: var(--color-bg-primary);
@@ -70,11 +74,16 @@ const { title } = Astro.props;
 		}
 	}
 
-	h1, .heading-xl {
+	h1, .heading-xxl {
 		font-size: var(--font-size-xxl);
 		font-weight: var(--font-weight-main-heading);
 		margin: 0;
 		letter-spacing: -0.5px;
+	}
+
+	.heading-xl {
+		font-size: var(--font-size-xl);
+		font-weight: var(--font-weight-main-heading);
 	}
 
 	h2, h3, .heading-l {
@@ -86,12 +95,21 @@ const { title } = Astro.props;
 	}
 	p {
 		font-family: var(--sans);
-		font-size: var(--font-size-xs);
+		font-size: var(--font-size-s);
 		font-weight: 400;
 		line-height: 150%;
 	}
 
 	.text-secondary {
 		color: var(--color-fg-secondary);
+	}
+
+	@media  (width < 480px) {
+		body {
+			display: unset;
+		}
+		aside {
+			display:none
+		}
 	}
 </style>

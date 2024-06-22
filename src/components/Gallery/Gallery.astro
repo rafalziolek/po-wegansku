@@ -6,8 +6,18 @@ interface Props {
 const {} = Astro.props;
 ---
 
-<!-- Component Template (HTML + JS Expressions) -->
-
+<div class="gallery">
+    <slot />
+</div>
 <style>
-{/* CSS */}
+    .gallery {
+        padding-block: var(--space-xl);
+        padding-inline: var(--space-xl);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-l);
+        overflow: scroll;
+        height: 100%;
+        width: 100%;
+    }
 </style>

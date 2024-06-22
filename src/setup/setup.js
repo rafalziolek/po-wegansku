@@ -53,4 +53,5 @@ const SMOOTHIES = [
     "Czekoladowe smoothie"
   ];
 
+
   export {SNIADANIA, SLODKOSCI, SLODKIE_DODATKI, SMOOTHIES}

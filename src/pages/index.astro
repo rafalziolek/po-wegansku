@@ -2,31 +2,41 @@
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button/Button.astro';
 import { Image } from 'astro:assets';
-import CoverImage from '../images/cover@2x.jpg';
+import coverImage from '../images/cover@2x.jpg';
+import rafaelloOne from '../images/rafaello-1.jpeg';
+import rafaelloTwo from '../images/rafaello-2.jpeg';
+import rafaelloThree from '../images/rafaello-3.jpeg';
+import rafaelloFour from '../images/rafaello-4.jpeg';
+import spisTresciOne from '../images/spis-tresci-1.jpeg';
+import spisTresciTwo from '../images/spis-tresci-2.jpeg';
+import spisTresciThree from '../images/spis-tresci-3.jpeg';
+import spisTresciFour from '../images/spis-tresci-4.jpeg';
 import Accordion from '../components/Accordion/accordion.astro';
-import Divider from '../components/Divider/Divider.astro';
-
+import Gallery from '../components/Gallery/Gallery.astro';
 import {SNIADANIA, SLODKOSCI, SLODKIE_DODATKI, SMOOTHIES} from '../setup/setup.js'	
-
+const images = [coverImage, spisTresciOne, spisTresciTwo, spisTresciThree, spisTresciFour, rafaelloOne, rafaelloTwo, rafaelloThree, rafaelloFour,]
 ---
 
 <Layout title="Po wegańsku. Na słodko.">
-	<aside><Image src={CoverImage} alt="Po wegańsku. Na słodko. Okładka." width={1000}/></aside>
+	<aside>
+		<Gallery>
+			{images.map((image) => <Image src={image} alt="Po wegańsku. Na słodko. Okładka." width={1000}/>)}
+	</Gallery>	
+	</aside>
 	<main>
 		<div class="wrapper">
 			<h1>Po wegańsku. Na słodko.</h1>
-			<h2 class="text-secondary">Proste, wegańskie przepisy na słodkie wypieki oraz przysmaki. </h2>
 			<div class="description">
+
 				<p>Książka jest kierowana do wszystkich. Wegan czy nie wegan. To nie jest istotne. Chcę, abyście z moich przepisów czerpali inspirację do lepszego traktowania swojego ciała, a może nawet spędzili trochę czasu i poczytali o weganizmie.</p>
 			</div>
 			<div class="details">
 				<div class="price">
-					<h3 class="heading-xl">Cena: 49zł</h3>
-					<Button label="Kupuję" href="https://buy.stripe.com/fZeeWr3BVdin3xSaEE"/>
+					<Button label="Kupuję — 49 zł" href="https://buy.stripe.com/fZeeWr3BVdin3xSaEE"/>
 				</div>
-			<Divider/>
 			<div class="recipes">
 				<h3>Znajdziesz tu 41 przepisów, które osłodzą Ci życie</h3>
+				<div class="accordion-wrapper">
 				<Accordion Title={`${SNIADANIA.length} śniadań`}>
 					<ol>
 						{SNIADANIA.map((item) => <li>{item}</li>)}
@@ -47,7 +57,7 @@ import {SNIADANIA, SLODKOSCI, SLODKIE_DODATKI, SMOOTHIES} from '../setup/setup.j
 						{SMOOTHIES.map((item) => <li>{item}</li>)}
 					</ol>
 				</Accordion>
-			</div>
+			</div></div>
 		</div>
 	</div>
 
@@ -73,7 +83,6 @@ import {SNIADANIA, SLODKOSCI, SLODKIE_DODATKI, SMOOTHIES} from '../setup/setup.j
 		height: 100vh;
 		position: sticky;
 		overflow: hidden;
-		padding-inline: var(--space-xl);
 		grid-area: aside;
 		display: flex;
 		align-items: center;
@@ -87,7 +96,7 @@ import {SNIADANIA, SLODKOSCI, SLODKIE_DODATKI, SMOOTHIES} from '../setup/setup.j
 
 	main {
 		flex: 2 1 auto;
-		padding: var(--space-xxl);
+		padding: var(--space-xxl) var(--space-xl);
 		display: flex;
 		flex-direction: column;
 		grid-area: main;
@@ -101,12 +110,12 @@ import {SNIADANIA, SLODKOSCI, SLODKIE_DODATKI, SMOOTHIES} from '../setup/setup.j
 		& .details {
 			display: flex;
 			flex-direction: column;
-			gap: var(--space-l);
+			gap: var(--space-xl);
 		}
 		& .description {
 			display: flex;
 			flex-direction: column;
-			margin-block: var(--space-l) var(--space-l);
+			margin-block: var(--space-s) var(--space-l);
 			gap: var(--space-m);
 		}
 		
@@ -122,5 +131,24 @@ import {SNIADANIA, SLODKOSCI, SLODKIE_DODATKI, SMOOTHIES} from '../setup/setup.j
 		flex-direction: column;
 		gap: var(--space-m);
 		margin-block-start: var(--space-s);
+		& .accordion-wrapper {
+			border-radius: 12px;
+			border: 1px solid rgba(0, 0, 0, 0.06);
+			overflow: hidden;
+			display: flex;
+			flex-direction: column;
+			& > details:not(:last-child) {
+				border-radius: 0;
+		}
+	}
+	}
+
+	@media  (width < 900px) {
+		body {
+			display: unset;
+		}
+		aside {
+			display:none
+		}
 	}
 </style>
