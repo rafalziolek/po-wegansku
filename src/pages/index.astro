@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button/Button.astro';
+import { Image } from 'astro:assets';
+import CoverImage from '../images/cover@2x.jpg';
+import Accordion from '../components/Accordion/accordion.astro';
+import * as Icon from '@astropub/icons'
+
+import {SNIADANIA, SLODKOSCI, SLODKIE_DODATKI, SMOOTHIES} from '../setup/setup.js'	
+
+---
+
+<Layout title="Po wegańsku. Na słodko.">
+	<aside><Image src={CoverImage} alt="Po wegańsku. Na słodko. Okładka." width={1000}/></aside>
+	<main>
+		<div class="wrapper">
+			<h1>Po wegańsku. Na słodko.</h1>
+			<h2>Proste, wegańskie przepisy na słodkie wypieki oraz przysmaki. </h2>
+			<p>Książka jest kierowana do wszystkich. Wegan czy nie wegan. To nie jest istotne. Chcę, abyście z moich przepisów czerpali inspirację do lepszego traktowania swojego ciała, a może nawet spędzili trochę czasu i poczytali o weganizmie.</p>
+			<div class="price">
+			<h3>Cena: 49zł</h3>
+			<Button label="Kupuję" href="https://buy.stripe.com/fZeeWr3BVdin3xSaEE"/></div>
+			<div class="recipes">
+				<h3>Znajdziesz tu 41 przepisów, które osłodzą Ci życie</h3>
+				<Accordion Title={`${SNIADANIA.length} śniadań`}>
+					<ol>
+						{SNIADANIA.map((item) => <li>{item}</li>)}
+					</ol>
+				</Accordion>
+				<Accordion Title={`${SLODKOSCI.length} słodkości`}>
+					<ol>
+						{SLODKOSCI.map((item) => <li>{item}</li>)}
+					</ol>
+				</Accordion>
+				<Accordion Title={`${SLODKIE_DODATKI.length} słodkich dodatków`}>
+					<ol>
+						{SLODKIE_DODATKI.map((item) => <li>{item}</li>)}
+					</ol>
+				</Accordion>
+				<Accordion Title={`${SMOOTHIES.length} Smoothie`}>
+					<ol>
+						{SMOOTHIES.map((item) => <li>{item}</li>)}
+					</ol>
+				</Accordion>
+		</div>
+		</div>
+	
+	</main>
+</Layout>
+
+<style>
+
+	body {
+		background-color: var(--color-bg-primary);
+		height: 100vh;
+		display: grid;
+		grid-template-areas: 'aside main';
+		grid-template-columns: 2fr 3fr;
+		margin: 0;
+	}
+
+	aside {
+		flex: 1 1 auto;
+		background-color: var(--color-bg-secondary);
+		height: 100vh;
+		overflow: hidden;
+		padding-inline: var(--space-xl);
+		grid-area: aside;
+		display: flex;
+		align-items: center;
+		& img {
+			width: 100%;
+			height: max-content;
+			object-fit: contain;
+			box-shadow: 0 1px 30px 0 rgba(0, 0, 0, 0.05);
+		}
+	}
+
+	main {
+		flex: 2 1 auto;
+		padding: var(--space-xxl);
+		display: flex;
+		flex-direction: column;
+		grid-area: main;
+		align-items: center;
+		& .wrapper {
+			max-width: 500px;
+		}
+		
+	}
+	.price, .recipes {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-m);
+	}
+</style>
