@@ -4,7 +4,7 @@ import Button from '../components/Button/Button.astro';
 import { Image } from 'astro:assets';
 import CoverImage from '../images/cover@2x.jpg';
 import Accordion from '../components/Accordion/accordion.astro';
-import * as Icon from '@astropub/icons'
+import Divider from '../components/Divider/Divider.astro';
 
 import {SNIADANIA, SLODKOSCI, SLODKIE_DODATKI, SMOOTHIES} from '../setup/setup.js'	
 
@@ -15,11 +15,16 @@ import {SNIADANIA, SLODKOSCI, SLODKIE_DODATKI, SMOOTHIES} from '../setup/setup.j
 	<main>
 		<div class="wrapper">
 			<h1>Po wegańsku. Na słodko.</h1>
-			<h2>Proste, wegańskie przepisy na słodkie wypieki oraz przysmaki. </h2>
-			<p>Książka jest kierowana do wszystkich. Wegan czy nie wegan. To nie jest istotne. Chcę, abyście z moich przepisów czerpali inspirację do lepszego traktowania swojego ciała, a może nawet spędzili trochę czasu i poczytali o weganizmie.</p>
-			<div class="price">
-			<h3>Cena: 49zł</h3>
-			<Button label="Kupuję" href="https://buy.stripe.com/fZeeWr3BVdin3xSaEE"/></div>
+			<h2 class="text-secondary">Proste, wegańskie przepisy na słodkie wypieki oraz przysmaki. </h2>
+			<div class="description">
+				<p>Książka jest kierowana do wszystkich. Wegan czy nie wegan. To nie jest istotne. Chcę, abyście z moich przepisów czerpali inspirację do lepszego traktowania swojego ciała, a może nawet spędzili trochę czasu i poczytali o weganizmie.</p>
+			</div>
+			<div class="details">
+				<div class="price">
+					<h3 class="heading-xl">Cena: 49zł</h3>
+					<Button label="Kupuję" href="https://buy.stripe.com/fZeeWr3BVdin3xSaEE"/>
+				</div>
+			<Divider/>
 			<div class="recipes">
 				<h3>Znajdziesz tu 41 przepisów, które osłodzą Ci życie</h3>
 				<Accordion Title={`${SNIADANIA.length} śniadań`}>
@@ -42,8 +47,10 @@ import {SNIADANIA, SLODKOSCI, SLODKIE_DODATKI, SMOOTHIES} from '../setup/setup.j
 						{SMOOTHIES.map((item) => <li>{item}</li>)}
 					</ol>
 				</Accordion>
+			</div>
 		</div>
-		</div>
+	</div>
+
 	
 	</main>
 </Layout>
@@ -51,18 +58,20 @@ import {SNIADANIA, SLODKOSCI, SLODKIE_DODATKI, SMOOTHIES} from '../setup/setup.j
 <style>
 
 	body {
-		background-color: var(--color-bg-primary);
-		height: 100vh;
+
 		display: grid;
 		grid-template-areas: 'aside main';
 		grid-template-columns: 2fr 3fr;
 		margin: 0;
+		background-color: var(--color-bg-secondary);
 	}
 
 	aside {
 		flex: 1 1 auto;
+		top:0;
 		background-color: var(--color-bg-secondary);
 		height: 100vh;
+		position: sticky;
 		overflow: hidden;
 		padding-inline: var(--space-xl);
 		grid-area: aside;
@@ -83,14 +92,35 @@ import {SNIADANIA, SLODKOSCI, SLODKIE_DODATKI, SMOOTHIES} from '../setup/setup.j
 		flex-direction: column;
 		grid-area: main;
 		align-items: center;
+		background-color: var(--color-bg-primary);
 		& .wrapper {
 			max-width: 500px;
+
+		}
+
+		& .details {
+			display: flex;
+			flex-direction: column;
+			gap: var(--space-l);
+		}
+		& .description {
+			display: flex;
+			flex-direction: column;
+			margin-block: var(--space-l) var(--space-l);
+			gap: var(--space-m);
 		}
 		
 	}
-	.price, .recipes {
+	.price {
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-m);
+	}
+
+	.recipes {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-m);
+		margin-block-start: var(--space-s);
 	}
 </style>

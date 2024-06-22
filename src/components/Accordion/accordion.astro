@@ -17,11 +17,9 @@ const {Title} = Astro.props;
         padding-block: var(--space-m);
         width: 100%;
         transition: 100ms opacity ease-out;
-        &  ol {
-            opacity: 0;
-         }
-        &[open] > * {
+        &[open] {
             opacity: 1;
+        
              & summary > svg {
                 transform: rotate(180deg);
                 transition: 100ms all ease-out;
@@ -30,6 +28,7 @@ const {Title} = Astro.props;
         
 
         & summary {
+
             transition: 200ms all ease-in-out;
             justify-content: space-between;
             cursor: pointer;

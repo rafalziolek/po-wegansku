@@ -31,6 +31,7 @@ const { title } = Astro.props;
 		--color-bg-secondary: #F9F9F9;
 		--color-bg-inverted: #000;
 		--color-fg-primary: #000;
+		--color-fg-secondary: #77787c;
 		--color-fg-inverted: #ffff;
 		--color-border-primary: rgba(0, 0, 0, 0.1);
 
@@ -39,18 +40,22 @@ const { title } = Astro.props;
 		--space-l: 2rem;
 		--space-xl: 4rem;
 		--space-xxl: 8rem;
+
+		--sans: "Instrument Sans", sans-serif;
+		--serif: "Instrument Serif", serif;
 		
 		--font-size-xs: 0.9rem;
 		--font-size-s: 1rem;
 		--font-size-m: 1.2rem;
-		--font-size-l: 1.8rem;
-		--font-size-xl: 2rem;
-		--font-size-xxl: 3.2rem;
+		--font-size-l: 1.5rem;
+		--font-size-xl: 1.8rem;
+		--font-size-xxl: 3.5rem;
 
-		--font-weight-heading: 300;
+		--font-weight-main-heading: 400;
+		--font-weight-heading: 400;
 	}
 	html {
-		font-family: "Instrument Serif", serif;
+		font-family: var(--serif);
 		background: var(--color-bg-primary);
 	}
 
@@ -58,27 +63,35 @@ const { title } = Astro.props;
 		margin: var(--space-m) 0 0 0;
 		padding: 0;
 		list-style-position: inside;
+		font-family: var(--sans);
+		font-size: var(--font-size-xs);
 		& li {
 			margin-block-end: var(--space-s);
 		}
 	}
 
-	h1 {
+	h1, .heading-xl {
 		font-size: var(--font-size-xxl);
-		font-weight: var(--font-weight-heading);
+		font-weight: var(--font-weight-main-heading);
 		margin: 0;
+		letter-spacing: -0.5px;
 	}
 
-	h2, h3 {
+	h2, h3, .heading-l {
 		font-size: var(--font-size-l);
 		font-weight: var(--font-weight-heading);
-		margin-block: 3rem 0;
+		margin-block: 0;
+		line-height: 130%;
+		letter-spacing: -0.06px;
 	}
-
 	p {
-		font-family: "Instrument Sans", sans-serif;
+		font-family: var(--sans);
 		font-size: var(--font-size-xs);
 		font-weight: 400;
 		line-height: 150%;
+	}
+
+	.text-secondary {
+		color: var(--color-fg-secondary);
 	}
 </style>
