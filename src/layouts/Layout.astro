@@ -1,0 +1,115 @@
+---
+import '@fontsource/instrument-serif';
+import '@fontsource-variable/inter';
+// Supports weights 400-700
+import '@fontsource-variable/instrument-sans';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Proste, wegańskie przepisy na słodkie wypieki oraz przysmaki pt. “po wegańsku. na słodko” autorki Nikola Chmiel. Książka jest kierowana do wszystkich. Wegan czy nie wegan. To nie jest istotne. Chcę, abyście z moich przepisów czerpali inspirację do lepszego traktowania swojego ciała, a może nawet spędzili trochę czasu i poczytali o weganizmie.">
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--color-bg-primary: #fff;
+		--color-bg-secondary: #F9F9F9;
+		--color-bg-inverted: #000;
+		--color-fg-primary: #000;
+		--color-fg-secondary: #77787c;
+		--color-fg-inverted: #ffff;
+		--color-border-primary: rgba(0, 0, 0, 0.1);
+
+		--space-s: 0.5rem;
+		--space-m: 1rem;
+		--space-l: 2rem;
+		--space-xl: 4rem;
+		--space-xxl: 8rem;
+
+		--sans: "Instrument Sans", sans-serif;
+		--serif: "Instrument Serif", serif;
+		
+		--font-size-xs: 0.9rem;
+		--font-size-s: 1rem;
+		--font-size-m: 1.2rem;
+		--font-size-l: 1.5rem;
+		--font-size-xl: 1.8rem;
+		--font-size-xxl: 3.5rem;
+
+		--font-weight-main-heading: 400;
+		--font-weight-heading: 400;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+	html {
+		font-family: var(--serif);
+		background: var(--color-bg-primary);
+	}
+
+	ol {
+		margin: var(--space-m) 0 0 0;
+		padding: 0;
+		list-style-position: inside;
+		font-family: var(--sans);
+		font-size: var(--font-size-xs);
+		& li {
+			margin-block-end: var(--space-s);
+		}
+	}
+
+	h1, .heading-xxl {
+		font-size: var(--font-size-xxl);
+		font-weight: var(--font-weight-main-heading);
+		margin: 0;
+		letter-spacing: -0.5px;
+	}
+
+	.heading-xl {
+		font-size: var(--font-size-xl);
+		font-weight: var(--font-weight-main-heading);
+	}
+
+	h2, h3, .heading-l {
+		font-size: var(--font-size-l);
+		font-weight: var(--font-weight-heading);
+		margin-block: 0;
+		line-height: 130%;
+		letter-spacing: -0.06px;
+	}
+	p {
+		font-family: var(--sans);
+		font-size: var(--font-size-s);
+		font-weight: 400;
+		line-height: 150%;
+	}
+
+	.text-secondary {
+		color: var(--color-fg-secondary);
+	}
+
+	@media  (width < 480px) {
+		body {
+			display: unset;
+		}
+		aside {
+			display:none
+		}
+	}
+</style>

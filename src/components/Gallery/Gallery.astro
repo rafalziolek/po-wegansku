@@ -1,0 +1,28 @@
+---
+interface Props {
+// prop: type;
+}
+
+const {} = Astro.props;
+---
+
+<div class="gallery">
+    <slot />
+</div>
+<style>
+    .gallery {
+        padding: var(--space-xl);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-l);
+        overflow-x: scroll;
+        height: 100%;
+        width: 100%;
+    }
+
+    @media  (width < 900px) {
+        .gallery {
+            flex-direction: row;
+        }
+	}
+</style>
