@@ -64,7 +64,7 @@ const { title } = Astro.props;
 	}
 
 	ol {
-		margin: var(--space-m) 0 0 0;
+		margin: var(--space-m) ;
 		padding: 0;
 		list-style-position: inside;
 		font-family: var(--sans);
@@ -79,6 +79,7 @@ const { title } = Astro.props;
 		font-weight: var(--font-weight-main-heading);
 		margin: 0;
 		letter-spacing: -0.5px;
+		text-wrap: balance;
 	}
 
 	.heading-xl {
@@ -104,12 +105,5 @@ const { title } = Astro.props;
 		color: var(--color-fg-secondary);
 	}
 
-	@media  (width < 480px) {
-		body {
-			display: unset;
-		}
-		aside {
-			display:none
-		}
-	}
+
 </style>
