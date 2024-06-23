@@ -14,7 +14,7 @@ const {Title} = Astro.props;
 <style>
     details {
         background-color: var(--color-bg-secondary);
-        padding: var(--space-m);
+
         width: 100%;
         transition: 100ms opacity ease-out;
         &:not(:last-child) {
@@ -28,10 +28,9 @@ const {Title} = Astro.props;
                 transition: 100ms all ease-out;
             }
         }
-        
 
         & summary {
-
+            padding: var(--space-m);
             transition: 200ms all ease-in-out;
             justify-content: space-between;
             cursor: pointer;
@@ -42,6 +41,7 @@ const {Title} = Astro.props;
             & > svg {
                 transition: 100ms all ease-out;
             }
+           
 
         }
     }

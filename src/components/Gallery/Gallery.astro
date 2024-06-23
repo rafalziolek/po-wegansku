@@ -11,13 +11,18 @@ const {} = Astro.props;
 </div>
 <style>
     .gallery {
-        padding-block: var(--space-xl);
-        padding-inline: var(--space-xl);
+        padding: var(--space-xl);
         display: flex;
         flex-direction: column;
         gap: var(--space-l);
-        overflow: scroll;
+        overflow-x: scroll;
         height: 100%;
         width: 100%;
     }
+
+    @media  (width < 900px) {
+        .gallery {
+            flex-direction: row;
+        }
+	}
 </style>

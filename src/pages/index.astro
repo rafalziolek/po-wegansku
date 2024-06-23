@@ -145,10 +145,16 @@ const images = [coverImage, spisTresciOne, spisTresciTwo, spisTresciThree, spisT
 
 	@media  (width < 900px) {
 		body {
-			display: unset;
+			display: flex;
+			flex-direction: column-reverse;
 		}
 		aside {
-			display:none
+			height: fit-content;
+			overflow: unset;
+			& img {
+				height: 100%;
+				max-width: 400px;
+			}
 		}
 	}
 </style>
