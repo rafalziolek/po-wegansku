@@ -1,0 +1,26 @@
+---
+import Stripe from 'stripe';
+
+const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
+
+const sessionId = Astro.url.searchParams.get('session_id');
+let isPaymentVerified = false;
+
+if (sessionId) {
+  try {
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    isPaymentVerified = session.payment_status === 'paid';
+  } catch (error) {
+    console.error('Error verifying payment:', error);
+  }
+}
+---
+
+<html lang="en">
+  <!-- ... your HTML ... -->
+  {isPaymentVerified ? (
+    <p>Payment verified. <a href="/download">Download your ebook</a></p>
+  ) : (
+    <p>Payment verification pending...</p>
+  )}
+</html>

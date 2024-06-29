@@ -10,11 +10,17 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^8.3.2",
+    "@astrojs/vercel": "^7.7.2",
     "@astropub/icons": "^0.2.0",
     "@fontsource-variable/instrument-sans": "^5.0.5",
     "@fontsource-variable/inter": "^5.0.18",
     "@fontsource/instrument-serif": "^5.0.20",
     "astro": "^4.11.0",
-    "eslint": "^9.5.0"
+    "dotenv": "^16.4.5",
+    "eslint": "^9.5.0",
+    "micro": "^10.0.1",
+    "raw-body": "^2.5.2",
+    "stripe": "^16.1.0"
   }
 }
