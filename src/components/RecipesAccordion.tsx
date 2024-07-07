@@ -30,8 +30,10 @@ export default function RecipesAccordion() {
             </AccordionTrigger>
             <AccordionContent>
               <ol className="list-decimal font-sans list-inside flex flex-col gap-y-1 pb-6 ">
-                {recipesList.recipes.map((recipe) => (
-                  <li className="text-sm">{recipe}</li>
+                {recipesList.recipes.map((recipe, index) => (
+                  <li key={`${recipe}-${index}`} className="text-sm">
+                    {recipe}
+                  </li>
                 ))}
               </ol>
             </AccordionContent>
