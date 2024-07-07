@@ -47,6 +47,8 @@ export const AccordionTrigger = React.forwardRef<
   </AccordionRadix.Trigger>
 ));
 
+AccordionTrigger.displayName = "AccordionTrigger";
+
 interface AccordionContentProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
@@ -59,3 +61,5 @@ export const AccordionContent = React.forwardRef<
     <div className="AccordionContentText">{children}</div>
   </AccordionRadix.Content>
 ));
+
+AccordionContent.displayName = "AccordionContent";

@@ -21,6 +21,7 @@ export default function RecipesAccordion() {
       <Accordion>
         {recipes.map((recipesList) => (
           <AccordionItem
+            key={recipesList.title}
             value={recipesList.title}
             className="border-b border-dashed border-black"
           >

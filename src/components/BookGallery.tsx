@@ -27,8 +27,9 @@ const images = [
 export default function BookGallery() {
   return (
     <div className="flex md:flex-col flex-row gap-10 justify-start items-center overflow-scroll p-14">
-      {images.map((image) => (
+      {images.map((image, index) => (
         <Image
+          key={index}
           src={image}
           alt="Po wegańsku. Na słodko. Okładka."
           className="w-full h-full aspect-auto rounded-2xl"
