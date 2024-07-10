@@ -20,14 +20,14 @@ export async function POST(request: Request) {
     );
     console.log(event.data.object);
 
-    if (event.type === "checkout.session.completed") {
-      const session = event.data.object as Stripe.Checkout.Session;
-      const customerEmail = session.customer_email;
+    if (event.type === "payment_intent.succeeded") {
+      const session = event.data.object as Stripe.PaymentIntent;
+      // const customerEmail = session.customer_email;
       const customerName = session.metadata?.firstName || "Customer";
-      await fetch("/api/send", {
+      await fetch("../send", {
         method: "POST",
         body: JSON.stringify({
-          email: customerEmail,
+          email: "rafal.ziolek@icloud.com",
           name: customerName,
         }),
       });
