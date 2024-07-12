@@ -21,11 +21,11 @@ export async function POST(request: Request) {
       process.env.STRIPE_WEBHOOK_SECRET!
     );
 
-    if (event.type === "payment_intent.succeeded") {
-      const paymentIntent = event.data.object as Stripe.PaymentIntent;
+    if (event.type === "checkout.session.completed") {
+      const paymentIntent = event.data.object as Stripe.Checkout.Session;
       const customerName = paymentIntent.metadata?.firstName || "Customer";
       const customerEmail =
-        paymentIntent.receipt_email || "rafal.ziolek@icloud.com"; // Use actual customer email if available
+        paymentIntent.customer_details?.email || "rafal.ziolek@icloud.com"; // Use actual customer email if available
 
       // Call the sendEmail function directly
       const emailResult = await sendEmail(customerEmail, customerName);
