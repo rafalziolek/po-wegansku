@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
-import { sendEmail } from "../../../utils/sendEmail"; // Adjust the import path as needed
+import { sendEmail } from "../../utils/sendEmail"; // Adjust the import path as needed
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-06-20",
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     if (event.type === "payment_intent.succeeded") {
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
       const customerName = paymentIntent.metadata?.firstName || "Customer";
-      const customerEmail = "rafal.ziolek@icloud.com"; // Use actual customer email if available
+      const customerEmail = paymentIntent.receipt_email; // Use actual customer email if available
 
       // Call the sendEmail function directly
       const emailResult = await sendEmail(customerEmail, customerName);
