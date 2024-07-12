@@ -4,13 +4,15 @@ import { NextResponse } from "next/server";
 import { sendEmail } from "../../../utils/sendEmail"; // Adjust the import path as needed
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-04-10" as any,
+  apiVersion: "2024-04-10" as any, // Use type assertion to bypass type check
   typescript: true,
 });
 
 export async function POST(request: Request) {
   const body = await request.text();
   const signature = headers().get("Stripe-Signature") as string;
+
+  console.log("Received webhook event");
 
   let event: Stripe.Event;
 
@@ -21,16 +23,20 @@ export async function POST(request: Request) {
       process.env.STRIPE_WEBHOOK_SECRET!
     );
 
-    if (event.type === "checkout.session.completed") {
-      const paymentIntent = event.data.object as Stripe.Checkout.Session;
+    console.log("Webhook event constructed:", event);
+
+    if (event.type === "payment_intent.succeeded") {
+      const paymentIntent = event.data.object as Stripe.PaymentIntent;
       const customerName = paymentIntent.metadata?.firstName || "Customer";
       const customerEmail =
-        paymentIntent.customer_details?.email || "rafal.ziolek@icloud.com"; // Use actual customer email if available
+        paymentIntent.receipt_email || "rafal.ziolek@icloud.com"; // Use actual customer email if available
 
       // Call the sendEmail function directly
       const emailResult = await sendEmail(customerEmail, customerName);
       if (!emailResult.success) {
         console.error("Failed to send email:", emailResult.error);
+      } else {
+        console.log("Email sent successfully");
       }
     }
 
