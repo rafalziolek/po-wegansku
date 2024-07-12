@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { sendEmail } from "../../../utils/sendEmail"; // Adjust the import path as needed
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-06-20",
+  apiVersion: "2024-04-10" as any,
   typescript: true,
 });
 
