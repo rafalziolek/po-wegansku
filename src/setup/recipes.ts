@@ -1,7 +1,7 @@
 import { title } from "process";
 
 const SNIADANIA = {
-  title: "14 śniadań",
+  title: "13 śniadań",
   recipes: [
     "Omlet gryczany",
     "Budyń owsiany",
@@ -9,7 +9,6 @@ const SNIADANIA = {
     "Jesienna owsianka",
     "Kokosowa ryżanka",
     "Słodki mus",
-    "Słodki mus z mango",
     "Czekoladowe chia",
     "Czekoladowy pudding",
     "Najlepsza granola na świecie",
