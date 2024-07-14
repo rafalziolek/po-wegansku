@@ -58,7 +58,7 @@ export const DownloadEbookEmail = ({ name }: DownloadEbookEmailProps) => {
 
             <Section className="my-[48px]">
               <Button
-                className="bg-black rounded-full text-white text-m font-semibold no-underline px-[20px] py-[8px]"
+                className="bg-black rounded-full text-white text-[15px] font-semibold no-underline px-[20px] py-[8px]"
                 href="https://j8gqkv04whnigint.public.blob.vercel-storage.com/powegansku-naslodko-nikolachmiel-LAcTGscBCfMuFL10EWy9CROc6cB3Zt.pdf?download=1"
               >
                 Pobierz ebooka

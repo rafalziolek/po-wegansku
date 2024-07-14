@@ -28,7 +28,8 @@ export async function POST(request: Request) {
     if (event.type === "checkout.session.completed") {
       const checkoutSession = event.data.object as Stripe.Checkout.Session;
       const customerName =
-        checkoutSession.customer_details?.email || "Customer";
+        checkoutSession.custom_fields?.find((field) => field.key === "imi")
+          ?.text?.value || "";
       const customerEmail =
         checkoutSession.customer_details?.email || "rafal.ziolek@icloud.com"; // Use actual customer email if available
 
