@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-
 import Cover from "../../public/img/preview/cover.jpg";
 import Rafaello1 from "../../public/img/preview/rafaello-1.jpeg";
 import Rafaello2 from "../../public/img/preview/rafaello-2.jpeg";
@@ -26,7 +25,9 @@ const images = [
 
 export default function BookGallery() {
   return (
-    <div className="flex md:flex-col flex-row gap-10 justify-start items-center overflow-scroll p-14">
+    <div
+      className={`flex lg:flex-col flex-row gap-10 justify-start items-center overflow-scroll p-14`}
+    >
       {images.map((image, index) => (
         <Image
           key={index}

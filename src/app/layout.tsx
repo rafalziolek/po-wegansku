@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${instrumentSerif.className} ${instrumentSerif.variable} ${inter.variable} min-h-screen h-content`}
+        className={`${instrumentSerif.className} ${instrumentSerif.variable} ${inter.variable} min-h-screen h-content bg-gray-100`}
       >
         {children}
       </body>

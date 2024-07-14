@@ -8,7 +8,7 @@ export async function sendEmail(email: string, name: string) {
       from: "Acme <onboarding@resend.dev>",
       to: [email],
       subject: "Thank you for your purchase!",
-      html: `<p>Hello ${name},</p><p>Thank you for purchasing our ebook! Here is your download link: <a href="https://j8gqkv04whnigint.public.blob.vercel-storage.com/powegansku-naslodko-nikolachmiel-LAcTGscBCfMuFL10EWy9CROc6cB3Zt.pdf" download>Download Ebook</a></p>`,
+      html: `<p>Hello ${name},</p><p>Thank you for purchasing our ebook! Here is your download link: <a href="https://j8gqkv04whnigint.public.blob.vercel-storage.com/powegansku-naslodko-nikolachmiel-LAcTGscBCfMuFL10EWy9CROc6cB3Zt.pdf?download=1" download>Download Ebook</a></p>`,
     });
 
     return { success: true, data };
