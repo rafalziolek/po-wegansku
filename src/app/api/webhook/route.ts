@@ -2,7 +2,7 @@ import Stripe from "stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { sendEmail } from "../../../utils/sendEmail"; // Adjust the import path as needed
-
+import { storePurchaseInfo } from "../../../utils/storePurchaseInfo";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-04-10" as any, // Use type assertion to bypass type check
   typescript: true,
@@ -27,11 +27,14 @@ export async function POST(request: Request) {
 
     if (event.type === "checkout.session.completed") {
       const checkoutSession = event.data.object as Stripe.Checkout.Session;
+      const purchaseId = checkoutSession.id;
       const customerName =
         checkoutSession.custom_fields?.find((field) => field.key === "imi")
-          ?.text?.value || "";
+          ?.text?.value || "Brak imienia";
       const customerEmail =
         checkoutSession.customer_details?.email || "rafal.ziolek@icloud.com"; // Use actual customer email if available
+
+        const addPurchaseInfoToDb = await storePurchaseInfo(customerEmail, customerName, purchaseId);
 
       // Call the sendEmail function directly
       const emailResult = await sendEmail(customerEmail, customerName);
