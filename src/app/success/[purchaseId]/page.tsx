@@ -61,7 +61,10 @@ export default async function SuccessPage({
               <span className="text-sm">Autorka: Nikola Chmiel</span>
             </div>
           </div>
-          <LinkButton label="Pobierz ebooka" href="" />
+          <LinkButton
+            label="Pobierz ebooka"
+            href="https://j8gqkv04whnigint.public.blob.vercel-storage.com/powegansku-naslodko-nikolachmiel-LAcTGscBCfMuFL10EWy9CROc6cB3Zt.pdf?download=1"
+          />
         </div>
       </div>
     </div>
