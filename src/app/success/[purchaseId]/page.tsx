@@ -1,11 +1,19 @@
 import React from "react";
 import { CheckCircledIcon, InstagramLogoIcon } from "@radix-ui/react-icons";
 import { sql } from "@vercel/postgres";
+import Image from "next/image";
+import Cover from "/public/img/preview/cover.jpg";
+import LinkButton from "@/components/LinkButton";
+import { notFound } from "next/navigation";
 
 async function validatePurchaseId(purchaseId: string) {
-  const purchaseData =
-    await sql`SELECT EXISTS(SELECT 1 FROM purchases WHERE purchase_id = ${purchaseId})`;
-  return purchaseData.rows[0].exists;
+  const getPurchaseData =
+    await sql`SELECT * FROM purchases WHERE purchase_id = ${purchaseId}`;
+
+  if (getPurchaseData.rows.length === 0) {
+    return notFound();
+  }
+  return getPurchaseData.rows[0];
 }
 
 export default async function SuccessPage({
@@ -13,32 +21,47 @@ export default async function SuccessPage({
 }: {
   params: { purchaseId: string };
 }) {
-  const isPurhcaseIdValid = await validatePurchaseId(params.purchaseId);
+  const purchaseData = await validatePurchaseId(params.purchaseId);
 
-  if (!isPurhcaseIdValid) {
+  if (!purchaseData) {
     return <div>This liks is invalid</div>;
   }
   return (
-    <div className="p-3 h-screen">
-      <div className=" bg-white rounded-2xl h-full w-full flex flex-col items-center justify-center">
-        <div className="flex flex-col gap-y-5 py-28 items-center justify-center px-10 max-w-[800px]">
-          <CheckCircledIcon className="text-green-500 w-16 h-16" />
-          <h1 className="text-6xl">Dzięki za zakup ebooka!</h1>
+    <div className="p-3 min-h-screen flex flex-col items-center justify-center">
+      <div className="  m-auto bg-white rounded-2xl flex flex-col gap-y-5 py-16 px-16 max-w-[560px] max-h-[fit-content]">
+        <div className="text-center flex-col gap-y-8 pb-8 items-center justify-center flex">
+          <CheckCircledIcon className="text-green-500 w-16 h-16 text-center" />
+          <h1 className="text-5xl">Dzięki za zakup ebooka!</h1>
           <h3 className="font-sans">
-            Wkrótce dostaniesz wiadomość email z linkiem do jego pobrania.
-            Smacznego!
+            Możesz go pobrać teraz, klikając przycisk poniżej lub przez maila,
+            który wkrótce otrzymasz. Smacznego!
           </h3>
+        </div>
 
-          <footer className="italic text-2xl flex flex-col gap-y-2 items-center mt-8 w-full">
-            <hr className="border-dashed border-black w-full mb-8" />
-            <a
-              href="https://instagram.com/chmiel.vegan"
-              className="flex flex-col gap-y-2 items-center"
-            >
-              <InstagramLogoIcon className="text-gray-500 w-5 h-5" />
-              chmiel.vegan
-            </a>
-          </footer>
+        <ul className="flex flex-col font-sans">
+          <li className="flex flex-row gap-x-2 justify-between py-4 border-b border-dashed border-black">
+            <h4>Mail:</h4>
+            <span className="font-medium">{purchaseData.email}</span>
+          </li>
+          <li className="flex flex-row gap-x-2 justify-between py-4 border-b border-dashed border-black">
+            <h4>Cena:</h4>
+            <span className="font-medium">49 zł</span>
+          </li>
+        </ul>
+        <div className="flex flex-col items-stretch justify-center mt-10 gap-y-6">
+          <div className="font-sans flex flex-row gap-x-4 items-center">
+            <Image
+              className="border border-neutral-200 rounded-md"
+              src={Cover}
+              alt="ebook"
+              width={60}
+            />
+            <div className="flex flex-col ">
+              <span className="font-medium">Po Wegańsku. Na słodko.</span>
+              <span className="text-sm">Autorka: Nikola Chmiel</span>
+            </div>
+          </div>
+          <LinkButton label="Pobierz ebooka" href="" />
         </div>
       </div>
     </div>
