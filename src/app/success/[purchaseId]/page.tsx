@@ -1,6 +1,23 @@
 import React from "react";
 import { CheckCircledIcon, InstagramLogoIcon } from "@radix-ui/react-icons";
-export default function SuccessPage() {
+import { sql } from "@vercel/postgres";
+
+async function validatePurchaseId(purchaseId: string) {
+  const purchaseData =
+    await sql`SELECT EXISTS(SELECT 1 FROM purchases WHERE purchase_id = ${purchaseId})`;
+  return purchaseData.rows[0].exists;
+}
+
+export default async function SuccessPage({
+  params,
+}: {
+  params: { purchaseId: string };
+}) {
+  const isPurhcaseIdValid = await validatePurchaseId(params.purchaseId);
+
+  if (!isPurhcaseIdValid) {
+    return <div>This liks is invalid</div>;
+  }
   return (
     <div className="p-3 h-screen">
       <div className=" bg-white rounded-2xl h-full w-full flex flex-col items-center justify-center">

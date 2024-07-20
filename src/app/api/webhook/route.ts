@@ -34,13 +34,29 @@ export async function POST(request: Request) {
       const customerEmail =
         checkoutSession.customer_details?.email || "rafal.ziolek@icloud.com"; // Use actual customer email if available
 
-        const addPurchaseInfoToDb = await storePurchaseInfo(customerEmail, customerName, purchaseId);
-        if (!addPurchaseInfoToDb.success) {
-          console.error('Failed to store purchase info:', addPurchaseInfoToDb.error);
-          return NextResponse.json({ error: addPurchaseInfoToDb.error }, { status: 500 });
-        }
+      const addPurchaseInfoToDb = await storePurchaseInfo(
+        customerName,
+        customerEmail,
+        purchaseId
+      );
+      if (!addPurchaseInfoToDb.success) {
+        console.error(
+          "Failed to store purchase info:",
+          addPurchaseInfoToDb.error
+        );
+        return NextResponse.json(
+          { error: addPurchaseInfoToDb.error },
+          { status: 500 }
+        );
+      }
+
+      const downloadLink = `https://chmielvegan.com/success/${purchaseId}`;
       // Call the sendEmail function directly
-      const emailResult = await sendEmail(customerEmail, customerName);
+      const emailResult = await sendEmail(
+        customerEmail,
+        customerName,
+        downloadLink
+      );
       if (!emailResult.success) {
         console.error("Failed to send email:", emailResult.error);
       } else {
