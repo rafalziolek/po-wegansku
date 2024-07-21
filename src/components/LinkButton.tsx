@@ -7,7 +7,7 @@ export default function LinkButton({
 }: {
   href: string;
   label: string;
-  download: boolean;
+  download?: boolean;
 }) {
   return (
     <a
