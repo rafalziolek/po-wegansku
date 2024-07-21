@@ -18,9 +18,13 @@ import * as React from "react";
 
 interface DownloadEbookEmailProps {
   name?: string;
+  downloadLink?: string;
 }
 
-export const DownloadEbookEmail = ({ name }: DownloadEbookEmailProps) => {
+export const DownloadEbookEmail = (
+  { name }: DownloadEbookEmailProps,
+  { downloadLink }: DownloadEbookEmailProps
+) => {
   const previewText = `Dzięki za zakup ebooka!`;
 
   return (
@@ -48,18 +52,18 @@ export const DownloadEbookEmail = ({ name }: DownloadEbookEmailProps) => {
               Cześć <span className="font-medium">{name}</span>!
             </Text>
             <Text className="text-black text-[15px] leading-[24px]">
-              Dziękuję za zakup mojego ebooka{" "}
+              Dziękuję za zakup mojego ebooka.{" "}
               <span className="font-medium italic">
                 "Po Wegańsku. Na słodko"
               </span>
-              . Mam nadzieję, że będzie on dla Ciebie inspirujący i przydatny.
+              Mam nadzieję, że będzie on dla Ciebie inspirujący i przydatny.
               Możesz go pobrać klikając w poniższy przycisk.
             </Text>
 
             <Section className="my-[48px]">
               <Button
                 className="bg-black rounded-full text-white text-[15px] font-semibold no-underline px-[20px] py-[8px]"
-                href="https://j8gqkv04whnigint.public.blob.vercel-storage.com/powegansku-naslodko-nikolachmiel-LAcTGscBCfMuFL10EWy9CROc6cB3Zt.pdf?download=1"
+                href={downloadLink}
               >
                 Pobierz ebooka
               </Button>
