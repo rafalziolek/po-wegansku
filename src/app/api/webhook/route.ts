@@ -31,11 +31,15 @@ export async function POST(request: Request) {
       const customerName =
         checkoutSession.custom_fields?.find((field) => field.key === "imi")
           ?.text?.value || "Brak imienia";
+      const customerSurname =
+        checkoutSession.custom_fields?.find((field) => field.key === "nazwisko")
+          ?.text?.value || "Brak nazwiska";
+      const customerFullName = `${customerName} ${customerSurname}`;
       const customerEmail =
         checkoutSession.customer_details?.email || "rafal.ziolek@icloud.com"; // Use actual customer email if available
 
       const addPurchaseInfoToDb = await storePurchaseInfo(
-        customerName,
+        customerFullName,
         customerEmail,
         purchaseId
       );
