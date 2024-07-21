@@ -60,7 +60,10 @@ export default async function SuccessPage({
               <span className="text-sm">Autorka: Nikola Chmiel</span>
             </div>
           </div>
-          <LinkButton label="Pobierz ebooka" href="/api/download" />
+          <LinkButton
+            label="Pobierz ebooka"
+            href="https://storage.googleapis.com/po-wegansku-bucket-1/powegansku-naslodko-nikolachmiel.pdf"
+          />
         </div>
       </div>
     </div>
