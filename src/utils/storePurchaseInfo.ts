@@ -1,5 +1,4 @@
 import { sql } from "@vercel/postgres";
-import { randomUUID } from "crypto";
 
 export async function storePurchaseInfo(
   fullName: string,

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Cover from "/public/img/preview/cover.jpg";
 import LinkButton from "@/components/LinkButton";
 import { notFound } from "next/navigation";
+import { list } from "@vercel/blob";
 
 async function validatePurchaseId(purchaseId: string) {
   const getPurchaseData =
@@ -16,13 +17,19 @@ async function validatePurchaseId(purchaseId: string) {
   return getPurchaseData.rows[0];
 }
 
+async function getDownloadLink() {
+  const response = await list({ prefix: "ebook/" });
+  const file = response.blobs[0];
+  return file.downloadUrl;
+}
+
 export default async function SuccessPage({
   params,
 }: {
   params: { purchaseId: string };
 }) {
   const purchaseData = await validatePurchaseId(params.purchaseId);
-
+  const downloadLink = await getDownloadLink();
   if (!purchaseData) {
     return <div>This liks is invalid</div>;
   }
@@ -61,10 +68,7 @@ export default async function SuccessPage({
               <span className="text-sm">Autorka: Nikola Chmiel</span>
             </div>
           </div>
-          <LinkButton
-            label="Pobierz ebooka"
-            href="https://j8gqkv04whnigint.public.blob.vercel-storage.com/powegansku-naslodko-nikolachmiel-LAcTGscBCfMuFL10EWy9CROc6cB3Zt.pdf?download=1"
-          />
+          <LinkButton label="Pobierz ebooka" href={downloadLink} />
         </div>
       </div>
     </div>
