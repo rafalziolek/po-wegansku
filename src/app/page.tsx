@@ -24,12 +24,12 @@ export default function Home() {
             </div>
             <LinkButton
               label="Kupuję - 49 zł"
-              href="https://buy.stripe.com/test_aEU9DC8zLfR4aw85kk"
+              href="https://buy.stripe.com/5kAeYR9GccVuaJ2bII"
             />
 
             <div className="flex flex-col gap-y-4">
               <h3 className="text-2xl">
-                Znajdziesz tu 41 przepisów, które osłodzą Ci życie
+                Znajdziesz tu 40 przepisów, które osłodzą Ci życie
               </h3>
               <RecipesAccordion />
             </div>
@@ -46,7 +46,7 @@ export default function Home() {
               <p className="text-black text-2xl font-semibold font-serif">
                 Nikola Chmiel
               </p>
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-row gap-2 flex-wrap">
                 <Link
                   className="text-neutral-800 underline"
                   href="https://instagram.com/chmiel.vegan"

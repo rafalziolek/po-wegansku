@@ -1,10 +1,10 @@
 import Stripe from "stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
-import { sendEmail } from "../../../utils/sendEmail"; // Adjust the import path as needed
+import { sendEmail } from "../../../utils/sendEmail";
 import { storePurchaseInfo } from "../../../utils/storePurchaseInfo";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-04-10" as any, // Use type assertion to bypass type check
+  apiVersion: "2024-06-20" as any, // Use type assertion to bypass type check
   typescript: true,
 });
 

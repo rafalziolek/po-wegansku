@@ -1,5 +1,3 @@
-import { title } from "process";
-
 const SNIADANIA = {
   title: "13 śniadań",
   recipes: [

@@ -52,11 +52,11 @@ export const DownloadEbookEmail = (
               Cześć <span className="font-medium">{name}</span>!
             </Text>
             <Text className="text-black text-[15px] leading-[24px]">
-              Dziękuję za zakup mojego ebooka{" "}
+              Dziękuję za zakup mojego ebooka.{" "}
               <span className="font-medium italic">
                 "Po Wegańsku. Na słodko"
               </span>
-              . Mam nadzieję, że będzie on dla Ciebie inspirujący i przydatny.
+              Mam nadzieję, że będzie on dla Ciebie inspirujący i przydatny.
               Możesz go pobrać klikając w poniższy przycisk.
             </Text>
 

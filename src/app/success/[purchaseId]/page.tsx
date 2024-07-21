@@ -27,10 +27,10 @@ export default async function SuccessPage({
   }
   return (
     <div className="p-3 min-h-screen flex flex-col items-center justify-center">
-      <div className="  m-auto bg-white rounded-2xl flex flex-col gap-y-5 py-16 px-16 max-w-[560px] max-h-[fit-content]">
-        <div className="text-center flex-col gap-y-8 pb-8 items-center justify-center flex">
+      <div className="  m-auto bg-white rounded-2xl flex flex-col gap-y-5 p-6 sm:p-16 max-w-[560px] max-h-[fit-content]">
+        <div className="text-center flex-col gap-y-4 sm:gap-y-8 pb-8 items-center justify-center flex">
           <CheckCircledIcon className="text-green-500 w-16 h-16 text-center" />
-          <h1 className="text-5xl">Dzięki za zakup ebooka!</h1>
+          <h1 className="text-4xl sm:text-5xl">Dzięki za zakup ebooka!</h1>
           <h3 className="font-sans">
             Możesz go pobrać teraz, klikając przycisk poniżej lub przez maila,
             który wkrótce otrzymasz. Smacznego!
@@ -55,7 +55,7 @@ export default async function SuccessPage({
               alt="ebook"
               width={60}
             />
-            <div className="flex flex-col ">
+            <div className="flex flex-col">
               <span className="font-medium">Po Wegańsku. Na słodko.</span>
               <span className="text-sm">Autorka: Nikola Chmiel</span>
             </div>
